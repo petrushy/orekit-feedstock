@@ -79,9 +79,11 @@ java.util.function.Supplier ^
 --exclude org.hipparchus.util.RosenNumberPartitionIterator ^
 --classpath %PREFIX%\Library\lib\tools.jar ^
 --files 81 ^
---build ^
---install
+--generate
 if errorlevel 1 exit 1
+
+python -m build -nw
+for %%f in (dist\*.whl) do pip install "%%f" --force
 
 :: ensure that JCC_JDK is set correctly by invoking an activate script
 set ACTIVATE_DIR=%PREFIX%\etc\conda\activate.d

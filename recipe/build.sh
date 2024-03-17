@@ -95,8 +95,10 @@ java.util.function.Supplier \
 --exclude org.hipparchus.util.RosenNumberPartitionIterator \
 --classpath $PREFIX/lib/tools.jar \
 --files 81 \
---build \
---install
+--generate
+
+python -m build -nw
+python -m pip install dist/*.whl --force
 
 # ensure that JCC_JDK is set correctly by invoking an activate script
 
