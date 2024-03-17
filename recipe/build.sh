@@ -98,7 +98,8 @@ java.util.function.Supplier \
 --generate
 
 python -m build -nw
-python -m pip install dist/*.whl --force
+ls dist
+python -m pip install dist/*.whl -vv --force --no-deps
 
 # ensure that JCC_JDK is set correctly by invoking an activate script
 
@@ -111,4 +112,4 @@ cp $RECIPE_DIR/scripts/activate.sh $ACTIVATE_DIR/orekit-activate.sh
 cp $RECIPE_DIR/scripts/deactivate.sh $DEACTIVATE_DIR/orekit-deactivate.sh
 
 cd orekit_stubs
-$PYTHON setup.py install  
+$PYTHON -m pip install . -vv --force --no-deps 

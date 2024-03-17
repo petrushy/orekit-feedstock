@@ -83,7 +83,7 @@ java.util.function.Supplier ^
 if errorlevel 1 exit 1
 
 python -m build -nw
-for %%f in (dist\*.whl) do pip install "%%f" --force
+for %%f in (dist\*.whl) do pip install "%%f" -vv --force --no-deps 
 
 :: ensure that JCC_JDK is set correctly by invoking an activate script
 set ACTIVATE_DIR=%PREFIX%\etc\conda\activate.d
@@ -104,5 +104,5 @@ copy %RECIPE_DIR%\scripts\deactivate.ps1 %DEACTIVATE_DIR%\orekit-deactivate.ps1
 if errorlevel 1 exit 1
 
 cd orekit_stubs
-"%PYTHON%" setup.py install
+"%PYTHON%" -m pip install . -vv --force --no-deps
 if errorlevel 1 exit 1
