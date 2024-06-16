@@ -63,6 +63,7 @@ java.util.function.LongConsumer ^
 java.util.function.IntConsumer ^
 java.util.function.DoubleConsumer ^
 java.util.function.Supplier ^
+java.util.function.Function ^
 --module %SRC_DIR%\pyhelpers.py ^
 --reserved INFINITE ^
 --reserved ERROR ^
@@ -83,7 +84,7 @@ java.util.function.Supplier ^
 if errorlevel 1 exit 1
 
 python -m build -nw
-for %%f in (dist\*.whl) do pip install "%%f" -vv --force --no-deps 
+for %%f in (dist\*.whl) do pip install "%%f" -vv --force --no-deps --ignore-installed
 
 :: ensure that JCC_JDK is set correctly by invoking an activate script
 set ACTIVATE_DIR=%PREFIX%\etc\conda\activate.d
@@ -104,5 +105,5 @@ copy %RECIPE_DIR%\scripts\deactivate.ps1 %DEACTIVATE_DIR%\orekit-deactivate.ps1
 if errorlevel 1 exit 1
 
 cd orekit_stubs
-"%PYTHON%" -m pip install . -vv --force --no-deps
+"%PYTHON%" -m pip install . -vv --force --no-deps --ignore-installed
 if errorlevel 1 exit 1

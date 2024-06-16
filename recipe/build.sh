@@ -81,6 +81,7 @@ java.util.function.LongConsumer \
 java.util.function.IntConsumer \
 java.util.function.DoubleConsumer \
 java.util.function.Supplier \
+java.util.function.Function \
 --module $SRC_DIR/pyhelpers.py \
 --reserved INFINITE \
 --reserved ERROR \
@@ -98,7 +99,7 @@ java.util.function.Supplier \
 --generate
 
 python -m build -nw
-python -m pip install dist/*.whl -vv --force --no-deps
+python -m pip install dist/*.whl -vv --force --no-deps --ignore-installed
 
 # ensure that JCC_JDK is set correctly by invoking an activate script
 
@@ -111,4 +112,4 @@ cp $RECIPE_DIR/scripts/activate.sh $ACTIVATE_DIR/orekit-activate.sh
 cp $RECIPE_DIR/scripts/deactivate.sh $DEACTIVATE_DIR/orekit-deactivate.sh
 
 #cd orekit_stubs
-#$PYTHON -m pip install . -vv --force --no-deps 
+#$PYTHON -m pip install . -vv --force --no-deps --ignore-installed
